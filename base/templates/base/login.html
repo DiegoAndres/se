@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login Prueba</title>
+	{% include "base/css_lib.html" %}
+</head>
+<body>
+	<div class="container">
+		<div class="row" style="margin-top: 50px;">
+			<div class="col-md-12 col-lg-12" align="center">
+				<h2>Autentificación</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="offset-md-3 offset-lg-3 col-md-6 col-lg-6">
+				<form action="" method="POST" role="form">
+        			{% csrf_token %}
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+						</div>
+						{{form.username}}
+					</div>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+						</div>
+						{{form.password}}
+					</div>
+					<div align="center">
+						<button type="submit" class="btn btn-primary">Ingresar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+{% block js_lib %}
+    {% include "base/js_lib.html" %}
+{% endblock%}
+</html>
