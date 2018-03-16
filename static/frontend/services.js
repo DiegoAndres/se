@@ -1,28 +1,36 @@
 app.service('TicketService',['$q','$http', function($q, $http) {
     
-    // this.setConsolidados = function($scope){
-    //     $scope.consolidados__consolidados = { 
-    //         items: [],
-    //         filters: {},
-    //         paginate: {},
-    //         lookup: null,
-    //         selected: {
-    //             pedidos: [],
-    //             cantidad_total: 0,
-    //             valor_total: 0
-    //         },
-    //     };
-    // };
+    this.get_estados = function(){
+        var def      = $q.defer();
+        var prom     = def.promise;
+        $http({
+            method : 'GET',
+            url    : '/api/estados',
+            // params : params,
+            // data    : data,
+            // headers : { 'Content-Type': 'application/x-www-form-urlencoded'}
+            // headers : { 'Content-Type': 'application/json' }
+        }).then(function (response) {
+            def.resolve(response.data);
+        }, function (response) {
+            def.reject(response.statusText);
+        });
+        return prom;
+    }
 
-    // this.getConsolidados = function($scope){
-    //     DataService.listData($scope, 'consolidados__consolidados').then(function(response){
-    //     	// if ($scope['productos__productos'].filters.talla__in.length > 0){
-    //     	// 	$scope['productos__productos'].filters.talla__in = $scope.productos__productos.filters.talla__in.split(',');
-    //     	// }
-    //     });
-    // };
-
-    // this.saveConsolidado = function($scope){
-    //     DataService.postData($scope, 'consolidados__consolidados');
-    // }
+    this.save_ticket = function(data){
+        var def      = $q.defer();
+        var prom     = def.promise;
+        $http({
+            method : 'POST',
+            url    : '/api/tickets/',
+            data    : data,
+            headers : { 'Content-Type': 'application/json' }
+        }).then(function (response) {
+            def.resolve(response.data);
+        }, function (response) {
+            def.reject(response.statusText);
+        });
+        return prom;
+    }
 }]);

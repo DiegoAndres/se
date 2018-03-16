@@ -3,22 +3,24 @@
         <h3 class="modal-title" id="modal-title">Nuevo Ticket</h3>
     </div>
     <div class="modal-body" id="modal-body">
-    	<!-- <div class="row">
-    		<div class="col-md-6 col-lg-6">
-        		<input type="text" name="nombre_cliente" id="inputNombre_cliente" class="form-control" value="" required="required" title="Nombre Cliente" placeholder="Nombre" ng-model="clientes__clientes.selected.nombre">
+    	<div class="row" style="margin-bottom: 15px;">
+            <div class="col-md-8 col-lg-8">
+                <!-- <label><small>Título Ticket</small></label> -->
+        		<input type="text" name="titulo" class="form-control" required="required" title="Título Ticket" placeholder="Título del Ticket" ng-model="ticket.titulo">
     		</div>
-    		<div class="col-md-6 col-lg-6">
-    			<input type="text" name="rut_cliente" id="inputRut_cliente" class="form-control" value="" required="required" title="Rut Cliente" placeholder="Rut (Opcional)" ng-model="clientes__clientes.selected.rut">
-    		</div>
+            <div class="col-md-4 col-lg-4">
+                <!-- <select class="custom-select" ng-model="ticket.estado" ng-change="cambio_estado()">
+                    <option ng-repeat="estado in estados" ng-value="ticket.estado">{{estado.nombre}}</option>
+                </select> -->
+                <select class="custom-select" ng-options="estado.id as estado.nombre for estado in estados" ng-model="ticket.estado" ng-init="ticket.estado=1"></select>
+            </div>
     	</div>
-    	<div class="row" style="margin-top: 10px;">
-    		<div class="col-md-6 col-lg-6">
-        		<input type="number" name="telefono_cliente" id="inputTelefono_cliente" class="form-control" value="" required="required" title="Telefono Cliente" placeholder="Telefono" ng-model="clientes__clientes.selected.telefono">
-    		</div>
-    		<div class="col-md-6 col-lg-6">
-    			<input type="mail" name="correo_cliente" id="inputCorreo_cliente" class="form-control" value="" required="required" title="Correo Cliente" placeholder="Correo (Opcional)" ng-model="clientes__clientes.selected.correo">
-    		</div>
-    	</div> -->
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <!-- <label><small>Descripción Ticket</small></label> -->
+                <textarea class="form-control" placeholder="Descripción del Ticket" rows="3" required="required" ng-model="ticket.descripcion" style="resize: none;"></textarea>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button class="btn btn-success" ng-click="nuevo_ticket()" type="button">Crear Ticket</button>

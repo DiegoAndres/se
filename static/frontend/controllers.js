@@ -1,21 +1,38 @@
-var app = angularConfig(angular.module('se',['ngRoute', 'ui.bootstrap', 'ui.select']));
+var app = angularConfig(angular.module('se',['ngRoute', 'ui.bootstrap', 'ngNotify']));
 
 
-app.controller('TicketsController',['$scope', '$filter', 'TicketService', '$uibModal', function($scope, $filter, TicketService, $uibModal){
-    y = $scope;
+app.controller('TicketsController',['$scope', '$filter', 'TicketService', '$uibModal', 'ngNotify', function($scope, $filter, TicketService, $uibModal, ngNotify){
+    y             = $scope;
+    $scope.ticket = {};
 
-    $scope.modal_ticket = function(){    	
+    TicketService.get_estados().then(function(response){
+    	$scope.estados = response;
+    	$scope.ticket.estado = response.filter(function(index) {
+    		if (index.nombre == 'Abierto'){
+    			return index;	
+    		}
+    		return null;
+    	});
+    });
+
+    $scope.modal_ticket = function(){
     	$scope.modalTicket = $uibModal.open({
                 animation   :     true,
                 templateUrl : 'modal.html',
                 scope       : $scope,
                 size        : 'lg',
                 backdrop    : 'static',
+                // appendTo    : angular.element('#NgCtrlTag')
         });
     }
 
     $scope.nuevo_ticket = function(){
-    	console.log('vamos a crear')
+    	var ticket    = $scope.ticket;
+    	TicketService.save_ticket(ticket).then(function(response){
+    		console.log(response);
+    		$scope.modalTicket.close();
+    		ngNotify.set('Ticket creado con correctamente', 'success');
+    	});
     }
 
 //     ConsolidadosService.setConsolidados($scope);

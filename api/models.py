@@ -10,6 +10,9 @@ class Estado(models.Model):
     """
     nombre         = models.CharField(max_length = 30, verbose_name = u'nombre', help_text = "Estado del Ticket" )
 
+    def __unicode__( self ):
+        return str(self.nombre)
+
 
 class Ticket(models.Model):
     """
