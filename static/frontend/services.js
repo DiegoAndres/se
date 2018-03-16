@@ -1,3 +1,4 @@
+// Servicio de Datos. Se realizan todas las llamadas http los endpoints
 app.service('TicketService',['$q','$http', function($q, $http) {
     
     this.get_permisos = function(){

@@ -15,13 +15,11 @@ class TicketSerializer(serializers.ModelSerializer):
     def get_diferencia_fecha_creacion(self, obj):
         fecha = obj.fecha_creacion
         ahora = datetime.datetime.now()
-        print fecha
-        print ahora
-        dif = date(ahora.year, ahora.month, ahora.day) - date(ahora.year, ahora.month, ahora.day)
+        dif = date(ahora.year, ahora.month, ahora.day) - date(fecha.year, fecha.month, fecha.day)
         if dif.days != 0:
             return dif.days
         else:
-            return dif.seconds//600
+            return dif.seconds // 600
 
     class Meta:
         model = Ticket

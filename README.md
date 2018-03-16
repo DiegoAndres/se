@@ -48,4 +48,6 @@ python manage.py migrate
 
 ```
 
+El permiso que permite crear tickets se llama 'crear_ticket' y puede ser asignado desde el admin mediante grupos o como permiso independiente.
+
 LISTO!

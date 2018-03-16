@@ -1,6 +1,7 @@
+// Definición de la app
 var app = angularConfig(angular.module('se',['ngRoute', 'ui.bootstrap', 'ngNotify']));
 
-
+// Controlador principal de la app
 app.controller('TicketsController',['$scope', '$filter', 'TicketService', '$uibModal', 'ngNotify', function($scope, $filter, TicketService, $uibModal, ngNotify){
     y             = $scope;
     $scope.ticket = {};
