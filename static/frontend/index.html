@@ -27,17 +27,11 @@
 	</div>
 	<div class="row" style="margin-top: 20px;">
 		<div class="col-md-12 col-lg-12">
-			<!-- <div class="well" ng-repeat="t in tickets">
-				sdsd
-				<h3>{{t.titulo}} <small>{{t.estado_nombre}}</small></h3>
-				<p>{{t.descripcion}}</p>
-				<small>{{t.fecha_creacion}}</small>
-			</div> -->
 			<div class="card mb-3" ng-class="{'bg-danger text-white': t.estado_nombre == 'Cerrado', 'bg-info text-white': t.estado_nombre == 'Resuelto', 'bg-warning text-white': t.estado_nombre == 'Pendiente', 'bg-secondary text-white': t.estado_nombre == 'En Proceso'}" style=" margin-bottom: 10px;" ng-repeat="t in tickets | filter: filter">
 				<div class="card-header">
 					<div class="row">
 						<div class="col-md-10 col-lg-10 form-inline">
-							<h4 style="margin-bottom: 3px;">{{t.titulo}}</h4>
+							<h4 style="margin-bottom: 3px;">#{{t.id}}  {{t.titulo}}</h4>
 							<span class="badge badge-pill badge-dark" style="margin-left: 10px;vertical-align: middle;">{{t.estado_nombre}}</span>
 
 						</div>
@@ -50,6 +44,9 @@
 			    	<h5 class="card-title">{{t.titulo}}</h5>
 			    	<p class="card-text">{{t.descripcion}}</p>
 			  	</div>
+			</div>
+			<div align="center">
+				<span class="badge badge-warning text-white" ng-if="tickets.length == 0">No existen Tickets registrados</span>
 			</div>
 		</div>
 	</div>

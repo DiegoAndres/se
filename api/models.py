@@ -19,7 +19,7 @@ class Ticket(models.Model):
         Modelo Ticket
     """
     titulo         = models.CharField(max_length = 100, verbose_name = u'titulo', help_text = "Título del Ticket" )
-    descripcion    = models.CharField(max_length = 100, verbose_name = u'descripcion', help_text = "Descripción del Ticket" )
+    descripcion    = models.CharField(max_length = 1000, verbose_name = u'descripcion', help_text = "Descripción del Ticket" )
     estado         = models.ForeignKey( Estado, verbose_name = u'estado' , help_text = "Estado Ticket")
     fecha_creacion = models.DateTimeField( auto_now_add = True )
 

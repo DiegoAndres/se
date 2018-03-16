@@ -29,18 +29,45 @@ app.controller('TicketsController',['$scope', '$filter', 'TicketService', '$uibM
         });
     }
 
+    $scope.validar_ticket = function(ticket){
+    	if (angular.isUndefined(ticket.titulo) == true ){
+    		return false;
+    	}
+    	if (angular.isUndefined(ticket.descripcion) == true ){
+    		return false;
+    	}
+    	if (angular.isUndefined(ticket.estado) == true ){
+    		return false;
+    	}
+    	if (!ticket.titulo){
+    		return false;
+    	}
+    	if (!ticket.descripcion){
+    		return false;
+    	}
+    	if (!ticket.estado){
+    		return false;
+    	}
+    	return true;
+    }
+
     $scope.nuevo_ticket = function(){
     	var ticket    = $scope.ticket;
-    	TicketService.save_ticket(ticket).then(function(response){
-    		console.log(response);
-    		$scope.ticket = {};
-    		TicketService.get_tickets().then(function(response){
-		    	$scope.tickets  = response;
-		    	// $scope.paginate = response.paginate;
-		    });
-    		$scope.modalTicket.close();
-    		ngNotify.set('Ticket creado con correctamente', 'success');
-    	});
+    	if ($scope.validar_ticket(ticket)){
+	    	TicketService.save_ticket(ticket).then(function(response){
+	    		console.log(response);
+	    		$scope.ticket = {};
+	    		TicketService.get_tickets().then(function(response){
+			    	$scope.tickets  = response;
+			    	// $scope.paginate = response.paginate;
+			    });
+	    		$scope.modalTicket.close();
+	    		ngNotify.set('Ticket creado con correctamente', 'success');
+	    	});
+    	}else{
+	    		ngNotify.set('Ingrese los campos correctamente', 'warn');
+
+    	}
     }
 
 }]);
